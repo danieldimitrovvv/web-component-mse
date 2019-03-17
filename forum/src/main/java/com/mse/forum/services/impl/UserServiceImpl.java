@@ -12,6 +12,7 @@ import com.mse.forum.mappers.UserMapper;
 import com.mse.forum.persistance.UserRepository;
 import com.mse.forum.persistance.entities.UserEntity;
 import com.mse.forum.services.UserService;
+import com.mse.forum.util.PasswordEncryptionUtil;
 
 import lombok.AllArgsConstructor;
 
@@ -25,6 +26,9 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public boolean saveUser(UserDTO dto) {
+		
+		dto.setPassword(PasswordEncryptionUtil.encrypt(dto.getPassword())) ;
+		
 		UserEntity entity = mapper.toEntity(dto);
 		repository.save(entity);
 		return true;
