@@ -2,10 +2,13 @@ package com.mse.forum.persistance.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 
@@ -24,13 +27,15 @@ public class ReplyEntity {
 	
 	@Id
 	@GeneratedValue
-	private long id;
+	private Long id;
 	
-	@Column(name = "topic_id")
-	private String topicID;
-	
-	@Column(name = "user_id")
-	private String userID;
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "topic", nullable =  false)
+	private TopicEntity topic;
+
+	@ManyToOne(cascade = CascadeType.ALL)
+	@JoinColumn(nullable =  false)
+	private UserEntity user;
 	
 	@Column(name = "created_on")
 	private Date createdOn;
@@ -38,7 +43,8 @@ public class ReplyEntity {
 	@Column(name = "modified_on")
 	private Date modifiedOn;
 	
-	private String text;
+	@Column(name = "reply_content")
+	private String replyContent;
 	
 	@PrePersist
 	public void setDates() {

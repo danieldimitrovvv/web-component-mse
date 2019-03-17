@@ -13,5 +13,7 @@ public interface TopicService {
 	
 	List<TopicDTO> getAll(); 
 		
-	TopicDTO getByTitle(String title); 
+	TopicDTO getByTitle(String title);
+
+	TopicDTO getById(Long id); 
 }

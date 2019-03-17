@@ -9,32 +9,32 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.mse.forum.dto.ReplyDTO;
-import com.mse.forum.services.ReplyService;
+import com.mse.forum.dto.UserDTO;
+import com.mse.forum.services.UserService;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping(path = "/replies")
-public class ReplyController {
+@RequestMapping(path = "/users")
+public class UserController {
 	
-	private ReplyService service;
+	private UserService service;
 	
-	// not need
-	@RequestMapping(method = RequestMethod.GET)
-	public List<ReplyDTO> getAll() {
-		return service.getAll();
+	
+	@RequestMapping(method = RequestMethod.GET, path="/name/{name}")
+	public UserDTO getByName(@PathVariable String name) {
+		return service.getByName(name);
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path = "/id/{topicId}")
-	public List<ReplyDTO> getByTopicId(@PathVariable Long topicId) {
-		return service.getByTopicId(topicId);
+	@RequestMapping(method = RequestMethod.GET, path="/id/{id}")
+	public UserDTO getById(@PathVariable Long id) {
+		return service.getById(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public void createReply(@RequestBody ReplyDTO reply) {
-		service.saveReply(reply);
+	public void createUser(@RequestBody UserDTO user) {
+		service.saveUser(user);
 		return;
 	}
 	

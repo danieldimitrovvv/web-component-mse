@@ -13,8 +13,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class TopicDTO {
 	
+	private Long id;
 	private String title;
-	private String userID;
 	private Date createdOn;
 	private Date modifiedOn;
 	private long viewsCount;

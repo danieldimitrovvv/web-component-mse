@@ -11,6 +11,10 @@ public interface ReplyService {
 
 	boolean saveReply(ReplyDTO dto);
 	
+	List<ReplyDTO> getByTopicId(Long topicId); 
+
+	List<ReplyDTO> getByUserId(Long UserId); 
+	
 	List<ReplyDTO> getAll(); 
 		
 }

@@ -26,9 +26,14 @@ public class TopicsController {
 		return service.getAll();
 	}
 	
-	@RequestMapping(method = RequestMethod.GET, path="/{title}")
+	@RequestMapping(method = RequestMethod.GET, path="/title/{title}")
 	public TopicDTO getByTitle(@PathVariable String title) {
 		return service.getByTitle(title);
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, path="/id/{id}")
+	public TopicDTO getById(@PathVariable Long id) {
+		return service.getById(id);
 	}
 	
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")

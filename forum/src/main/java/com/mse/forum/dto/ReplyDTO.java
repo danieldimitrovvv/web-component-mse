@@ -13,9 +13,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ReplyDTO {
 	
-	private String topicID;
-	private String userID;
-	private String text;
+	private Long topicId;
+	private Long userId;
+	private String replyContent;
 	private Date createdOn;
 	private Date modifiedOn;
 }

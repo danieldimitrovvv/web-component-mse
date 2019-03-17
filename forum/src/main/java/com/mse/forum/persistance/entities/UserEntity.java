@@ -22,36 +22,21 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
-@Entity(name = "topics")
-public class TopicEntity {
+@Entity(name = "users")
+public class UserEntity {
 	
 	@Id
 	@GeneratedValue
 	private Long id;
 	
 	@Column(unique = true)
-	private String title;
+	private String name;
 	
-	@Column(name = "created_on")
-	private Date createdOn;
+	private String password;
 	
-	@Column(name = "modified_on")
-	private Date modifiedOn;
+	private String rights;
 	
-	@Column(name = "views_count")
-	private Long viewsCount;
-	
-	@OneToMany(mappedBy = "topic", fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<ReplyEntity> replies;
 	
-	@PrePersist
-	public void setDates() {
-		this.createdOn = new Date();
-		this.modifiedOn = new Date();
-	}
-	
-	@PreUpdate
-	public void updateDates() {
-		this.modifiedOn = new Date();
-	}
 }
