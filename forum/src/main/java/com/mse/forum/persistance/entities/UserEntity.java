@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -34,7 +36,8 @@ public class UserEntity {
 	
 	private String password;
 	
-	private String rights;
+	@Enumerated(EnumType.STRING)
+	private Roles role;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
 	private List<ReplyEntity> replies;

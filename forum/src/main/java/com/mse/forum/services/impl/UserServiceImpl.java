@@ -1,6 +1,7 @@
 package com.mse.forum.services.impl;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
@@ -27,7 +28,7 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public boolean saveUser(UserDTO dto) {
 		
-		dto.setPassword(PasswordEncryptionUtil.encrypt(dto.getPassword())) ;
+		//dto.setPassword(PasswordEncryptionUtil.encrypt(dto.getPassword())) ;
 		
 		UserEntity entity = mapper.toEntity(dto);
 		repository.save(entity);
@@ -43,7 +44,8 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDTO getByName(String name) {
-		return mapper.toDTO(repository.getByName(name));
+		Optional <UserEntity> userOptional = repository.getByName(name);
+		return mapper.toDTO(userOptional.get());
 	}
 
 }
